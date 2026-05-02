@@ -1,17 +1,196 @@
 ---
+import "../styles/global.css";
 
+import Layout from "../layout/layout.astro";
+import Hero from "../components/Hero.astro";
+import AboutUs from "../components/AboutUs.astro";
+import Render from "../components/Render.astro";
+import Localization from "../components/Localization.astro";
+import TypesProperty from "../components/TypesProperty.astro";
+import Photos from "../components/Photos.astro";
+import ContactButton from "../components/ContactButton.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <div id="Hero">
+    <div id="mask-overlay">
+      <div id="mask-content">
+        <Hero/>
+      </div>
+    </div>
+  </div>
+  <AboutUs />
+  <Render />
+  <Localization />
+  <TypesProperty />
+  <Photos/>
+  <ContactButton/>
+</Layout>
+
+<style>
+  .section {
+    height: 100vh;
+  }
+
+  #mask-overlay {
+    overflow: hidden;
+    mask-image: url("../images/Logo.svg");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: 50vh;
+  }
+
+  #logo-overlay {
+    overflow: hidden;
+    mask-image: url("../images/Logo.svg");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+</style>
+
+<script>
+
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  import LoungeImage from "../images/Lounge.webp";
+  import DiningroomImage from "../images/Diningroom.webp";
+  import HallImage from "../images/Hall.webp";
+  import KitchenImage from "../images/Kitchen.webp";
+  import BedroomImage from "../images/Bedroom.webp";
+  import BathroomImage from "../images/Bathroom.webp";
+  import FacadeImage from "../images/Facade.webp";
+  import BackyardImage from "../images/Backyard.webp";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    ease: "power1.inOut",
+    scrollTrigger: {
+      scrub: 1,
+      trigger: "#Hero",
+      start: "top top",
+      end: "+=1500",
+      pin: true,
+    },
+  });
+
+  tl.to("#mask-overlay", {
+    maskSize: "8000vh",
+    maskPosition: "center 90% ",
+  })
+    .to(
+      "#header",
+      {
+        opacity: 1,
+        duration: 1,
+      },
+      "<0.4",
+    )
+    .to(
+      "#Title",
+      {
+        opacity: 1,
+      },
+      "<",
+    ).to(
+      "#ContactButton",
+      {
+        opacity: 1,
+        pointerEvents: "auto",
+      },
+      "<"
+    )
+
+  const tlRender = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#Render",
+      start: "top 12%",
+      end: "+=1000", // controla cuánto dura el efecto
+      scrub: true,
+      pin: true,
+    },
+  });
+
+  tlRender.to("#Render", {
+    backgroundColor: "#85c79a", // tu primary
+    ease: "none",
+  });
+
+  const PropertyImages = [
+    {
+      src: LoungeImage.src,
+      alt: "Image for Lounge Casamigos property",
+    },
+    {
+      src: DiningroomImage.src,
+      alt: "Image for Dining Room Casamigos property",
+    },
+    {
+      src: HallImage.src,
+      alt: "Image for Hall Casamigos property",
+    },
+    {
+      src: KitchenImage.src,
+      alt: "Image for Kitchen Casamigos property",
+    },
+    {
+      src: BedroomImage.src,
+      alt: "Image for Bedroom Casamigos property",
+    },
+    {
+      src: BathroomImage.src,
+      alt: "Image for Bathroom Casamigos property",
+    },
+    {
+      src: FacadeImage.src,
+      alt: "Image for Facade Casamigos property",
+    },
+    {
+      src: BackyardImage.src,
+      alt: "Image for Backyard Casamigos property",
+    },
+  ];
+
+  const buttons = document.querySelectorAll(
+    "#Photos button",
+  ) as NodeListOf<HTMLButtonElement>;
+
+  const img = document.querySelector("#Photos picture img") as HTMLImageElement;
+
+  buttons.forEach((button, index) => {
+    if (index === 0) {
+      button.classList.add("focus");
+    }
+
+    button.addEventListener("click", () => {
+      const imageUrl = PropertyImages[index];
+
+      // 🔥 quitar active de todos
+      buttons.forEach((btn) => btn.classList.remove(":focus"));
+
+      // 🔥 activar el actual
+      button.classList.add(":focus");
+
+      // 🎬 animación imagen
+      gsap.to(img, {
+        opacity: 0,
+        duration: 0.2,
+        onComplete: () => {
+          img.src = imageUrl.src;
+          img.alt = imageUrl.alt;
+          gsap.to(img, { opacity: 1, duration: 0.2 });
+        },
+      });
+
+      // 🎯 mover tag
+      gsap.to("#Tag", {
+        y: button.offsetTop,
+        height: button.offsetHeight,
+        duration: 0.3,
+        ease: "power1.inOut",
+      });
+    });
+  });
+</script>

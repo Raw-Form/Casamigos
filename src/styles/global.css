@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Nohemi";
+  src: url("/fonts/Nohemi-Regular-BF6438cc579d934.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@theme {
+  --color-primary: #172223;
+  --color-primary-light: #171c23 ;
+  --color-secondary: #12b9b0;
+  --color-accent: #ddfcad;
+  --color-background: #4d7298;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h6 {
+    font-family: "Nohemi";
+  }
+
+  h1 {
+    font-size: 2.986rem;
+  }
+
+  h2 {
+    font-size: 2.488rem;
+  }
+
+  h3 {
+    font-size: 2.074rem;
+  }
+
+  h6 {
+    font-size: 1.2rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+}

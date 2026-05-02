@@ -1,0 +1,74 @@
+---
+import Print_1 from "../images/Prints_1.svg";
+import Print_2 from "../images/Prints_2.svg";
+const Prints = [
+  {
+    src: Print_1.src,
+    alt: "property type 1",
+  },
+  {
+    src: Print_2.src,
+    alt: "property type 1",
+  },
+];
+---
+
+<section
+  id="TypesProperty"
+  class="h-full lg:h-[100vh] w-full flex flex-col items-center p-10 bg-secondary text-white"
+>
+  <h2 class="text-primary">Property</h2>
+  <div
+    class="w-full h-full flex flex-col-reverse lg:flex-row items-stretch justify-between gap-5 lg:gap-10"
+  >
+    <div class="w-full lg:w-1/2 h-full flex flex-col pb-4">
+      <ul class="flex justify-start w-4/5 gap-0.5">
+        {
+          Prints.map((i, index) => (
+            <li class="w-full max-w-20 hover:max-w-30 transition-all duration-300 ease-in-out">
+              <button
+                id={`Prints_${index + 1}`}
+                class="bg-primary rounded-t-lg px-2 w-full"
+              >
+                Tipo {index + 1}
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="w-full h-full relative bg-primary rounded-tr-lg rounded-b-lg">
+        <picture>
+          <img
+            id="PrintImg"
+            src={Prints[0].src}
+            alt={Prints[0].alt}
+            class="object-contain w-full h-full"
+          />
+        </picture>
+      </div>
+    </div>
+    <p class="w-full lg:w-1/2 place-content-center">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ipsum
+      libero, efficitur vel leo et, commodo ultrices enim. Donec lectus velit,
+      venenatis ut iaculis ut, facilisis semper est. Maecenas scelerisque sem
+      nec condimentum congue. Donec ac purus eleifend, fringilla eros sit amet,
+      vestibulum dolor.
+    </p>
+  </div>
+</section>
+
+
+<script define:vars={{ Prints }}>
+  const img = document.getElementById("PrintImg");
+  const buttons = document.querySelectorAll("button[id^='Prints_']");
+
+  buttons.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      img.src = Prints[index].src;
+      img.alt = Prints[index].alt;
+
+      buttons.forEach((b) => b.classList.remove("bg-accent"));
+      btn.classList.add("bg-accent");
+    });
+  });
+</script>

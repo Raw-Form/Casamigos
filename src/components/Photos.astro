@@ -1,0 +1,65 @@
+---
+import HeroImage from "../images/HeroImage.webp";
+---
+
+<section id="Photos" class="h-[88vh] w-full p-10 bg-background">
+  <div class="relative w-full h-full bg-accent rounded-[30px]">
+    <div
+      id="Tag"
+      class="z-20 absolute w-[100%] h-fit text-transparent border-2 bg-background"
+    >
+      <h3>Tag</h3>
+    </div>
+    <div class="absolute flex flex-col justify-center h-full w-full">
+      <button
+        id="Lounge"
+        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
+        ><h3>Lounge</h3>
+      </button>
+      <button
+        id="DiningRoom"
+        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
+        ><h3>Dining room</h3>
+      </button>
+      <button
+        id="Hall"
+        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
+        ><h3>Hall</h3>
+      </button>
+      <button
+        id="Kitchen"
+        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
+        ><h3>Kitchen</h3>
+      </button>
+      <button
+        id="Bedroom"
+        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
+        ><h3>Bedroom</h3>
+      </button>
+      <button
+        id="Bathroom"
+        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
+        ><h3>Bathroom</h3>
+      </button>
+      <button
+        id="Facade"
+        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
+        ><h3>Facade</h3>
+      </button>
+      <button
+        id="Backyard"
+        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
+        ><h3 class="pointer-events-auto">Backyard</h3>
+      </button>
+    </div>
+    <div class="relative w-full h-full">
+      <picture>
+        <img
+          src={HeroImage.src}
+          alt="Imagen de hero Casamigos"
+          class="object-cover w-full h-full rounded-[30px]"
+        />
+      </picture>
+    </div>
+  </div>
+</section>

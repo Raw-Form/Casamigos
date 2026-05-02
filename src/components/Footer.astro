@@ -1,0 +1,39 @@
+---
+
+import ContactUsImage from "../images/Contactus.webp";
+---
+<footer
+      id="ContactUs"
+      class="h-fit lg:  h-[75vh] w-full pt-10 px-10 bg-primary text-white flex flex-col gap-10"
+    >
+      <h2 class="text-accent">Contact us</h2>
+      <div class="relative w-full h-full flex flex-col-reverse lg:flex-row items-end justify-between gap-5">
+        <picture class="relative">
+          <div class="absolute w-full h-full bg-linear-to-b from-transparent from-80% to-primary"/>
+          <img
+            src={ContactUsImage.src}
+            alt="Imagen promocional de contactanos Casamigos"
+            class="object-cover w-full  rounded-t-lg bg-"
+          />
+        </picture>
+        <div class="flex flex-row lg:flex-col gap-4 items-end justify-between w-full lg:w-1/3 h-full">
+          <a
+            class="flex items-center gap-3"
+            href="https://www.instagram.com/casamigostci?igsh=MW16eDlsODFuYjlxYw=="
+          >
+            <div
+              class={`mask-[url('../images/InstagramLogo.svg')]  w-14 h-14 mask-center mask-no-repeat  mask-contain bg-accent`}
+            >
+            </div>
+            <h6>Casamigos</h6>
+          </a>
+          <div class="flex items-center gap-3 w-fit">
+            <h6>Developed by</h6>
+            <div
+              class={`mask-[url('../images/LogoRawForm.svg')]  w-14 h-14 mask-center mask-no-repeat  mask-contain bg-accent`}
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
