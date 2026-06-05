@@ -104,10 +104,10 @@ const photos = [
   }
 </style>
 
-<script>
+Simple, eliminamos todo lo relacionado al timer y el observer. Solo queda el
+click manual: astro<script>
   import gsap from "gsap";
 
-  const section = document.getElementById("Photos")!;
   const titles = document.querySelectorAll<HTMLElement>(
     "#Photos .photos-title",
   );
@@ -120,19 +120,15 @@ const photos = [
   ) as HTMLElement;
 
   let currentIndex = 0;
-  let autoTimer: ReturnType<typeof setTimeout>;
-  const INTERVAL = 3000;
 
   const isDesktop = () => window.innerWidth >= 1024;
 
   gsap.set(titles, { opacity: 0.35, fontWeight: 400 });
 
   function activateTitle(nextIndex: number, skipImageFade = false) {
-    clearTimeout(autoTimer);
-
     const prevIndex = currentIndex;
     const activeEl = titles[nextIndex];
-    const tl = gsap.timeline({ onComplete: () => scheduleNext() });
+    const tl = gsap.timeline();
 
     titles.forEach((title, i) => {
       const isActive = i === nextIndex;
@@ -150,7 +146,6 @@ const photos = [
       );
     });
 
-    // Indicador desktop — usa getBoundingClientRect (no scrollea, está fijo)
     if (isDesktop()) {
       const rect = activeEl.getBoundingClientRect();
       const parentRect = indicatorDesk.parentElement!.getBoundingClientRect();
@@ -167,8 +162,6 @@ const photos = [
       );
     }
 
-    // ✅ FIX: Indicador móvil — offsetLeft es relativo al padre,
-    //         no al viewport, así que no se rompe con el scroll del strip
     if (!isDesktop()) {
       tl.to(
         indicatorMobile,
@@ -204,29 +197,9 @@ const photos = [
     currentIndex = nextIndex;
   }
 
-  function scheduleNext() {
-    autoTimer = setTimeout(() => {
-      activateTitle((currentIndex + 1) % titles.length);
-    }, INTERVAL);
-  }
-
   titles.forEach((title, i) => {
     title.addEventListener("click", () => activateTitle(i));
   });
 
-  // ✅ FIX: IntersectionObserver pausa el auto-avance cuando
-  //         el cliente navega a otra sección
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        scheduleNext(); // retoma cuando vuelve a ser visible
-      } else {
-        clearTimeout(autoTimer); // pausa al salir de la sección
-      }
-    },
-    { threshold: 0.4 }, // activa cuando el 40% del section es visible
-  );
-
-  observer.observe(section);
-  activateTitle(0, true); // primer título sin fade
+  activateTitle(0, true);
 </script>
