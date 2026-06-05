@@ -1,24 +1,23 @@
 ---
 import HeroImage from "../images/HeroImage.webp";
-
+import { Image } from "astro:assets";
 ---
-<section class="h-[100vh] relative items-center justify-end">
+<section class="h-screen relative items-center justify-end">
   <div
-    class="absolute w-full h-full bg-linear-to-b from-transparent from-20% to-accent backdrop-blur-[2px]"
+    class="absolute w-full h-full bg-linear-to-b from-transparent from-20% to-secondary backdrop-blur-[2px]"
   >
     <div
       id="Title"
       class="w-full h-full flex flex-col items-center text-center sm:text-right sm:items-end justify-center p-10 opacity-0 text-primary"
     >
-      <h2>Lorem ipsum</h2>
-      <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
+      <h2>Casamigos</h2>
+      <div class="flex flex-col lg:flex-row gap-2">
+        <h3>Providenciales,</h3>
+        <h3>Turk and Caicos,</h3>
+        <h3>Luxury Villa</h3>
+      </div>
     </div>
   </div>
-  <picture>
-    <img
-      src={HeroImage.src}
-      alt="Imagen de hero Casamigos"
-      class="object-cover w-full h-full"
-    />
-  </picture>
+  <Image src={HeroImage} alt="Imagen de hero Casamigos" class="object-cover w-full h-full" />
+
 </section>

@@ -4,8 +4,11 @@ import "../styles/global.css";
 import Layout from "../layout/layout.astro";
 import Hero from "../components/Hero.astro";
 import AboutUs from "../components/AboutUs.astro";
+import FirstPhotos from "../components/FirstPhotos.astro";
 import Render from "../components/Render.astro";
 import Localization from "../components/Localization.astro";
+
+import SecondPhotos from "../components/SecondPhotos.astro";
 import TypesProperty from "../components/TypesProperty.astro";
 import Photos from "../components/Photos.astro";
 import ContactButton from "../components/ContactButton.astro";
@@ -15,16 +18,18 @@ import ContactButton from "../components/ContactButton.astro";
   <div id="Hero">
     <div id="mask-overlay">
       <div id="mask-content">
-        <Hero/>
+        <Hero />
       </div>
     </div>
   </div>
   <AboutUs />
-  <Render />
+  <FirstPhotos />
+  <!-- <Render /> -->
   <Localization />
+  <SecondPhotos />
   <TypesProperty />
-  <Photos/>
-  <ContactButton/>
+  <Photos />
+  <ContactButton />
 </Layout>
 
 <style>
@@ -50,18 +55,8 @@ import ContactButton from "../components/ContactButton.astro";
 </style>
 
 <script>
-
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  import LoungeImage from "../images/Lounge.webp";
-  import DiningroomImage from "../images/Diningroom.webp";
-  import HallImage from "../images/Hall.webp";
-  import KitchenImage from "../images/Kitchen.webp";
-  import BedroomImage from "../images/Bedroom.webp";
-  import BathroomImage from "../images/Bathroom.webp";
-  import FacadeImage from "../images/Facade.webp";
-  import BackyardImage from "../images/Backyard.webp";
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -71,7 +66,7 @@ import ContactButton from "../components/ContactButton.astro";
       scrub: 1,
       trigger: "#Hero",
       start: "top top",
-      end: "+=1500",
+      end: "+=500",
       pin: true,
     },
   });
@@ -94,14 +89,15 @@ import ContactButton from "../components/ContactButton.astro";
         opacity: 1,
       },
       "<",
-    ).to(
+    )
+    .to(
       "#ContactButton",
       {
         opacity: 1,
         pointerEvents: "auto",
       },
-      "<"
-    )
+      "<",
+    );
 
   const tlRender = gsap.timeline({
     scrollTrigger: {
@@ -118,79 +114,8 @@ import ContactButton from "../components/ContactButton.astro";
     ease: "none",
   });
 
-  const PropertyImages = [
-    {
-      src: LoungeImage.src,
-      alt: "Image for Lounge Casamigos property",
-    },
-    {
-      src: DiningroomImage.src,
-      alt: "Image for Dining Room Casamigos property",
-    },
-    {
-      src: HallImage.src,
-      alt: "Image for Hall Casamigos property",
-    },
-    {
-      src: KitchenImage.src,
-      alt: "Image for Kitchen Casamigos property",
-    },
-    {
-      src: BedroomImage.src,
-      alt: "Image for Bedroom Casamigos property",
-    },
-    {
-      src: BathroomImage.src,
-      alt: "Image for Bathroom Casamigos property",
-    },
-    {
-      src: FacadeImage.src,
-      alt: "Image for Facade Casamigos property",
-    },
-    {
-      src: BackyardImage.src,
-      alt: "Image for Backyard Casamigos property",
-    },
-  ];
+  // ─── Estado central ───────────────────────────────────────────────
+  let state = 0;
 
-  const buttons = document.querySelectorAll(
-    "#Photos button",
-  ) as NodeListOf<HTMLButtonElement>;
-
-  const img = document.querySelector("#Photos picture img") as HTMLImageElement;
-
-  buttons.forEach((button, index) => {
-    if (index === 0) {
-      button.classList.add("focus");
-    }
-
-    button.addEventListener("click", () => {
-      const imageUrl = PropertyImages[index];
-
-      // 🔥 quitar active de todos
-      buttons.forEach((btn) => btn.classList.remove(":focus"));
-
-      // 🔥 activar el actual
-      button.classList.add(":focus");
-
-      // 🎬 animación imagen
-      gsap.to(img, {
-        opacity: 0,
-        duration: 0.2,
-        onComplete: () => {
-          img.src = imageUrl.src;
-          img.alt = imageUrl.alt;
-          gsap.to(img, { opacity: 1, duration: 0.2 });
-        },
-      });
-
-      // 🎯 mover tag
-      gsap.to("#Tag", {
-        y: button.offsetTop,
-        height: button.offsetHeight,
-        duration: 0.3,
-        ease: "power1.inOut",
-      });
-    });
-  });
+ 
 </script>

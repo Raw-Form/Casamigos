@@ -1,19 +1,17 @@
+---
+import MenuBars from '../images/Bars.svg';
+import Logo from '../images/Logo.svg';;
+---
 <header
   id="header"
   class="fixed h-[12vh] w-screen bg-primary z-40 opacity-0"
 >
   <nav class="h-full w-full relative flex items-center justify-center p-4">
     <button id="menu-button" class="absolute left-10">
-      <div
-        class={`mask-[url('../images/Bars.svg')]  w-12 h-12 mask-center mask-no-repeat  mask-contain bg-secondary active:bg-accent transition-colors duration-300`}
-      >
-      </div>
+      <MenuBars class="w-12 h-12 text-secondary active:text-accent transition-colors duration-300" />
     </button>
     <div class="flex items-center gap-4 text-secondary">
-      <div
-        class={`mask-[url('../images/Logo.svg')]  w-14 h-14 mask-center mask-no-repeat  mask-contain bg-secondary`}
-      >
-      </div>
+      <Logo class="w-14 h-14 text-secondary"/>
       <h1 class="hidden sm:block">Casamigos</h1>
     </div>
     <div

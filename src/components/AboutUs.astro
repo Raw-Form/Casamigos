@@ -1,32 +1,54 @@
+---
+import Logo from "../images/Logo.svg";
+---
+
 <section
   id="AboutUs"
-  class="h-full sm:h-[75vh] w-full flex flex-col items-center p-10 bg-secondary "
+  class="h-full xl:h-[75vh] w-full flex flex-col items-center p-10 bg-primary"
 >
-  <h2 class="text-primary">About Us</h2>
+  <h2 class="text-secondary">About Us</h2>
   <div
-    class="flex flex-col sm:flex-row flex-grow items-center justify-between gap-10 text-white"
+    class="flex flex-col lg:flex-row grow items-center justify-between gap-10 text-white"
   >
-    <div
-      id="logo-overlay"
-      class="h-100 w-full sm:h-1/2 sm:w-1/2 bg-primary"
-    >
+    <Logo class="h-100 w-full sm:w-1/2 text-secondary" />
+    <div class="w-full lg:w-1/2 flex flex-col gap-5">
+      <p>
+        The name <span class="text-secondary font-bold italic">Casamigos</span> holds a special meaning to us — a home created for
+        friends and family to gather, connect, and make lasting memories
+        together. In Spanish, Casamigos translates to <span class="text-secondary font-bold italic">“house of friends”</span>, a name
+        that perfectly reflects the spirit behind our villas.
+      </p>
+      <p>
+        We created the Casamigos Villas with the vision of welcoming friends and
+        families from around the world to experience the beauty, warmth, and
+        tranquility of the sunny Turks and Caicos. More than just a place to
+        stay, <span class="text-secondary font-bold italic">Casamigos is meant to feel like your home away from home — a place
+        where unforgettable moments are shared together.</span>
+      </p>
+      <p>
+        Nestled in the heart of Providenciales, this beautifully designed
+        <span class="text-secondary font-bold italic">eco-friendly luxury villa</span> offers the perfect blend of modern island
+        living and privacy. Situated on a spacious 0.33-acre parcel, this
+        exceptional residence features 3 bedrooms and 3.5 bathrooms,
+        thoughtfully <span class="text-secondary font-bold italic">crafted with comfort, sustainability, and tropical elegance
+        in mind.</span>
+      </p>
+      <p>
+        The home welcomes you through a private gated driveway, creating an
+        <span class="text-secondary font-bold italic">exclusive and serene retreat</span> from the moment you arrive. Inside,
+        open-concept living spaces seamlessly connect to the outdoor
+        entertaining areas, allowing natural light and island breezes to flow
+        throughout the home.
+      </p>
+      <p>
+        Step outside to your own private swimming pool surrounded by lush
+        tropical landscaping, perfect for relaxing under the Caribbean sun. The
+        outdoor cooking and entertainment area creates an ideal setting for
+        hosting family and friends while enjoying the beautiful island
+        atmosphere. Just across the street, the sparkling turquoise waters
+        <span class="text-secondary font-bold italic">provide breathtaking views and easy access to the ocean lifestyle</span> that
+        makes Turks and Caicos Islands so desirable.
+      </p>
     </div>
-    <p class="w-full sm:w-1/2">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ipsum
-      libero, efficitur vel leo et, commodo ultrices enim. Donec lectus velit,
-      venenatis ut iaculis ut, facilisis semper est. Maecenas scelerisque sem
-      nec condimentum congue. Donec ac purus eleifend, fringilla eros sit amet,
-      vestibulum dolor.
-    </p>
   </div>
 </section>
-
-<style>
-  #logo-overlay {
-    overflow: hidden;
-    mask-image: url("../images/Logo.svg");
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-size: contain;
-  }
-</style>

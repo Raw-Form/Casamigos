@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import Turk_1 from "../images/Turk_1.webp";
+import Turk_2 from "../images/Turk_2.webp";
+import Turk_3 from "../images/Turk_3.webp";
+import Turk_4 from "../images/Turk_4.webp";
+import Turk_5 from "../images/Turk_5.webp";
+---
+
+<section class="grid grid-cols-1 md:grid-cols-12 gap-3 h-[75vh] p-10 ">
+  <div class="md:col-span-7 overflow-hidden rounded-sm">
+    <Image
+      src={Turk_1}
+      alt=""
+      class="w-full h-full object-cover hover:scale-105 transition duration-500"
+    />
+  </div>
+
+  <div class="md:col-span-5 grid grid-cols-2 gap-3">
+    <Image src={Turk_2} alt="" class="w-full h-full object-cover rounded-sm" />
+
+    <Image src={Turk_3} alt="" class="w-full h-full object-cover rounded-sm" />
+
+    <Image src={Turk_4} alt="" class="w-full h-full object-cover rounded-sm" />
+
+    <Image src={Turk_5} alt="" class="w-full h-full object-cover rounded-sm" />
+  </div>
+</section>

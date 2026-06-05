@@ -1,65 +1,232 @@
 ---
-import HeroImage from "../images/HeroImage.webp";
+import { Image } from "astro:assets";
+
+import LoungeImg from "../images/lounge.webp";
+import DiningroomImg from "../images/diningroom.webp";
+import HallImg from "../images/hall.webp";
+import KitchenImg from "../images/kitchen.webp";
+import BedroomImg from "../images/bedroom.webp";
+import BathroomImg from "../images/bathroom.webp";
+import FacadeImg from "../images/facade.webp";
+import BackyardImg from "../images/backyard.webp";
+
+const photos = [
+  { id: "Lounge", label: "Lounge", image: LoungeImg },
+  { id: "Diningroom", label: "Dining room", image: DiningroomImg },
+  { id: "Hall", label: "Hall", image: HallImg },
+  { id: "Kitchen", label: "Kitchen", image: KitchenImg },
+  { id: "Bedroom", label: "Bedroom", image: BedroomImg },
+  { id: "Bathroom", label: "Bathroom", image: BathroomImg },
+  { id: "Facade", label: "Facade", image: FacadeImg },
+  { id: "Backyard", label: "Backyard", image: BackyardImg },
+];
 ---
 
-<section id="Photos" class="h-[88vh] w-full p-10 bg-background">
-  <div class="relative w-full h-full bg-accent rounded-[30px]">
+<section id="Photos" class="h-[88vh] w-full p-4 md:p-10 bg-secondary">
+  <div
+    class="relative w-full h-full rounded-[30px] flex flex-col lg:flex-row gap-3 lg:gap-5"
+  >
+    <!-- ① IMAGEN: arriba en móvil, derecha en desktop -->
     <div
-      id="Tag"
-      class="z-20 absolute w-[100%] h-fit text-transparent border-2 bg-background"
+      class="relative w-full flex-1 min-h-0 overflow-hidden rounded-[20px] lg:rounded-[30px] order-1 lg:order-2"
     >
-      <h3>Tag</h3>
+      {
+        photos.map((photo, i) => (
+          <Image
+            id={`Photo_${photo.id}`}
+            src={photo.image}
+            alt={photo.label}
+            class:list={[
+              "property-image absolute inset-0 object-cover w-full h-full",
+              i !== 0 ? "opacity-0" : "opacity-100",
+            ]}
+          />
+        ))
+      }
     </div>
-    <div class="absolute flex flex-col justify-center h-full w-full">
-      <button
-        id="Lounge"
-        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
-        ><h3>Lounge</h3>
-      </button>
-      <button
-        id="DiningRoom"
-        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
-        ><h3>Dining room</h3>
-      </button>
-      <button
-        id="Hall"
-        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
-        ><h3>Hall</h3>
-      </button>
-      <button
-        id="Kitchen"
-        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
-        ><h3>Kitchen</h3>
-      </button>
-      <button
-        id="Bedroom"
-        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
-        ><h3>Bedroom</h3>
-      </button>
-      <button
-        id="Bathroom"
-        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
-        ><h3>Bathroom</h3>
-      </button>
-      <button
-        id="Facade"
-        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
-        ><h3>Facade</h3>
-      </button>
-      <button
-        id="Backyard"
-        class="text-left text-transparent hover:text-accent hover:bg-background/50 z-30 pl-4 focus:text-accent transition-all duration-300"
-        ><h3 class="pointer-events-auto">Backyard</h3>
-      </button>
-    </div>
-    <div class="relative w-full h-full">
-      <picture>
-        <img
-          src={HeroImage.src}
-          alt="Imagen de hero Casamigos"
-          class="object-cover w-full h-full rounded-[30px]"
-        />
-      </picture>
+
+    <!-- ② TÍTULOS: scroll horizontal en móvil, columna vertical en desktop -->
+    <div
+      class="relative shrink-0 order-2 lg:order-1
+        bg-primary rounded-[20px] lg:rounded-[30px]
+        flex flex-row items-center gap-1
+        overflow-x-auto overflow-y-hidden
+        px-4 py-3
+        lg:flex-col lg:items-start lg:justify-around
+        lg:overflow-x-visible lg:overflow-y-visible
+        lg:px-5 lg:py-10
+        no-scrollbar"
+    >
+      <!-- Indicador lateral: solo visible en desktop -->
+      <div
+        id="Photos_Indicator"
+        class="hidden lg:block absolute left-0 w-[3px] bg-secondary rounded-full pointer-events-none opacity-0"
+        style="top:0; height:0px;"
+      >
+      </div>
+
+      <!-- Indicador inferior: solo visible en móvil/tablet -->
+      <div
+        id="Photos_Indicator_Mobile"
+        class="lg:hidden absolute bottom-0 h-[3px] bg-secondary rounded-full pointer-events-none opacity-0"
+        style="left:0; width:0px;"
+      >
+      </div>
+
+      {
+        photos.map((photo) => (
+          <h2
+            id={`Title_${photo.id}`}
+            class="
+            photos-title cursor-pointer select-none
+            text-secondary/50 whitespace-nowrap
+            text-sm md:text-base
+            px-2 py-1
+            lg:text-2xl lg:whitespace-normal lg:px-0 lg:py-0
+          "
+          >
+            {photo.label}
+          </h2>
+        ))
+      }
     </div>
   </div>
 </section>
+
+<style>
+  /* Ocultar scrollbar manteniendo la funcionalidad */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+
+  const section = document.getElementById("Photos")!;
+  const titles = document.querySelectorAll<HTMLElement>(
+    "#Photos .photos-title",
+  );
+  const images = document.querySelectorAll<HTMLElement>(".property-image");
+  const indicatorDesk = document.getElementById(
+    "Photos_Indicator",
+  ) as HTMLElement;
+  const indicatorMobile = document.getElementById(
+    "Photos_Indicator_Mobile",
+  ) as HTMLElement;
+
+  let currentIndex = 0;
+  let autoTimer: ReturnType<typeof setTimeout>;
+  const INTERVAL = 3000;
+
+  const isDesktop = () => window.innerWidth >= 1024;
+
+  gsap.set(titles, { opacity: 0.35, fontWeight: 400 });
+
+  function activateTitle(nextIndex: number, skipImageFade = false) {
+    clearTimeout(autoTimer);
+
+    const prevIndex = currentIndex;
+    const activeEl = titles[nextIndex];
+    const tl = gsap.timeline({ onComplete: () => scheduleNext() });
+
+    titles.forEach((title, i) => {
+      const isActive = i === nextIndex;
+      tl.to(
+        title,
+        {
+          opacity: isActive ? 1 : 0.35,
+          fontWeight: isActive ? 700 : 400,
+          x: isDesktop() ? (isActive ? 10 : 0) : 0,
+          scale: isDesktop() ? 1 : isActive ? 1.05 : 1,
+          duration: 0.4,
+          ease: "power2.out",
+        },
+        0,
+      );
+    });
+
+    // Indicador desktop — usa getBoundingClientRect (no scrollea, está fijo)
+    if (isDesktop()) {
+      const rect = activeEl.getBoundingClientRect();
+      const parentRect = indicatorDesk.parentElement!.getBoundingClientRect();
+      tl.to(
+        indicatorDesk,
+        {
+          top: rect.top - parentRect.top,
+          height: rect.height,
+          opacity: 1,
+          duration: 0.45,
+          ease: "power3.inOut",
+        },
+        0,
+      );
+    }
+
+    // ✅ FIX: Indicador móvil — offsetLeft es relativo al padre,
+    //         no al viewport, así que no se rompe con el scroll del strip
+    if (!isDesktop()) {
+      tl.to(
+        indicatorMobile,
+        {
+          left: activeEl.offsetLeft,
+          width: activeEl.offsetWidth,
+          opacity: 1,
+          duration: 0.4,
+          ease: "power3.inOut",
+        },
+        0,
+      );
+
+      activeEl.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+
+    if (!skipImageFade) {
+      tl.to(
+        images[prevIndex],
+        { opacity: 0, scale: 1.03, duration: 0.3, ease: "power1.in" },
+        0,
+      ).to(
+        images[nextIndex],
+        { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" },
+        0.3,
+      );
+    }
+
+    currentIndex = nextIndex;
+  }
+
+  function scheduleNext() {
+    autoTimer = setTimeout(() => {
+      activateTitle((currentIndex + 1) % titles.length);
+    }, INTERVAL);
+  }
+
+  titles.forEach((title, i) => {
+    title.addEventListener("click", () => activateTitle(i));
+  });
+
+  // ✅ FIX: IntersectionObserver pausa el auto-avance cuando
+  //         el cliente navega a otra sección
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        scheduleNext(); // retoma cuando vuelve a ser visible
+      } else {
+        clearTimeout(autoTimer); // pausa al salir de la sección
+      }
+    },
+    { threshold: 0.4 }, // activa cuando el 40% del section es visible
+  );
+
+  observer.observe(section);
+  activateTitle(0, true); // primer título sin fade
+</script>
