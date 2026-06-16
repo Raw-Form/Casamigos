@@ -22,7 +22,7 @@ const photos = [
 ];
 ---
 
-<section id="Photos" class="h-[88vh] w-full p-4 md:p-10 bg-secondary">
+<section id="Photos" class="h-[88vh] w-full p-4 md:p-10 bg-primary">
   <div
     class="relative w-full h-full rounded-[30px] flex flex-col lg:flex-row gap-3 lg:gap-5"
   >
@@ -48,7 +48,7 @@ const photos = [
     <!-- ② TÍTULOS: scroll horizontal en móvil, columna vertical en desktop -->
     <div
       class="relative shrink-0 order-2 lg:order-1
-        bg-primary rounded-[20px] lg:rounded-[30px]
+        bg-secondary rounded-[20px] lg:rounded-[30px]
         flex flex-row items-center gap-1
         overflow-x-auto overflow-y-hidden
         px-4 py-3
@@ -60,7 +60,7 @@ const photos = [
       <!-- Indicador lateral: solo visible en desktop -->
       <div
         id="Photos_Indicator"
-        class="hidden lg:block absolute left-0 w-[3px] bg-secondary rounded-full pointer-events-none opacity-0"
+        class="hidden lg:block absolute left-0 w-[3px] bg-primary rounded-full pointer-events-none opacity-0"
         style="top:0; height:0px;"
       >
       </div>
@@ -68,7 +68,7 @@ const photos = [
       <!-- Indicador inferior: solo visible en móvil/tablet -->
       <div
         id="Photos_Indicator_Mobile"
-        class="lg:hidden absolute bottom-0 h-[3px] bg-secondary rounded-full pointer-events-none opacity-0"
+        class="lg:hidden absolute bottom-0 h-[3px] bg-primary rounded-full pointer-events-none opacity-0"
         style="left:0; width:0px;"
       >
       </div>
@@ -79,7 +79,7 @@ const photos = [
             id={`Title_${photo.id}`}
             class="
             photos-title cursor-pointer select-none
-            text-secondary/50 whitespace-nowrap
+            text-primary/70 whitespace-nowrap
             text-sm md:text-base
             px-2 py-1
             lg:text-2xl lg:whitespace-normal lg:px-0 lg:py-0
@@ -103,9 +103,7 @@ const photos = [
     scrollbar-width: none;
   }
 </style>
-
-Simple, eliminamos todo lo relacionado al timer y el observer. Solo queda el
-click manual: astro<script>
+<script>
   import gsap from "gsap";
 
   const titles = document.querySelectorAll<HTMLElement>(
@@ -123,7 +121,7 @@ click manual: astro<script>
 
   const isDesktop = () => window.innerWidth >= 1024;
 
-  gsap.set(titles, { opacity: 0.35, fontWeight: 400 });
+  gsap.set(titles, { opacity: 0.2, fontWeight: 400 });
 
   function activateTitle(nextIndex: number, skipImageFade = false) {
     const prevIndex = currentIndex;
@@ -135,7 +133,7 @@ click manual: astro<script>
       tl.to(
         title,
         {
-          opacity: isActive ? 1 : 0.35,
+          opacity: isActive ? 1 : 0.9,
           fontWeight: isActive ? 700 : 400,
           x: isDesktop() ? (isActive ? 10 : 0) : 0,
           scale: isDesktop() ? 1 : isActive ? 1.05 : 1,
