@@ -5,9 +5,7 @@ import Layout from "../layout/layout.astro";
 import Hero from "../components/Hero.astro";
 import AboutUs from "../components/AboutUs.astro";
 import FirstPhotos from "../components/FirstPhotos.astro";
-import Render from "../components/Render.astro";
 import Localization from "../components/Localization.astro";
-
 import SecondPhotos from "../components/SecondPhotos.astro";
 import TypesProperty from "../components/TypesProperty.astro";
 import Photos from "../components/Photos.astro";
@@ -24,7 +22,6 @@ import ContactButton from "../components/ContactButton.astro";
   </div>
   <AboutUs />
   <FirstPhotos />
-  <!-- <Render /> -->
   <Localization />
   <SecondPhotos />
   <TypesProperty />
@@ -34,7 +31,7 @@ import ContactButton from "../components/ContactButton.astro";
 
 <style>
   .section {
-    height: 100vh;
+    height: 100dvh;
   }
 
   #mask-overlay {
@@ -42,7 +39,7 @@ import ContactButton from "../components/ContactButton.astro";
     mask-image: url("../images/Logo.svg");
     mask-repeat: no-repeat;
     mask-position: center;
-    mask-size: 50vh;
+    mask-size: 50dvh;
   }
 
   #logo-overlay {
