@@ -7,8 +7,30 @@ import Turk_4 from "../images/Turk_4.webp";
 import Turk_5 from "../images/Turk_5.webp";
 ---
 
-<section class="grid grid-cols-1 md:grid-cols-12 gap-3 h-[75dvh] p-10 border-accent border-2">
-  <div class="md:col-span-7 overflow-hidden rounded-sm">
+<section
+  class="grid grid-cols-1 lg:grid-cols-2 w-full gap-3 h-[75dvh] p-10 border-accent border-2"
+>
+  <div class="overflow-hidden rounded-sm">
+    <Image src={Turk_1} alt="Turk and Caicos image 1" class="w-full h-full object-cover"/>
+  </div>
+  <div class="grid grid-cols-2 gap-3">
+    <div class="overflow-hidden rounded-sm">
+      <Image src={Turk_2} alt="Turk and Caicos image 2" class="w-full h-full object-cover"/>
+    </div>
+    <div class="overflow-hidden rounded-sm">
+      <Image src={Turk_3} alt="Turk and Caicos image 3" class="w-full h-full object-cover"/>
+    </div>
+    <div class="overflow-hidden rounded-sm">
+      <Image src={Turk_4} alt="Turk and Caicos image 4" class="w-full h-full object-cover"/>
+    </div>
+    <div class="overflow-hidden rounded-sm">
+      <Image src={Turk_5} alt="Turk and Caicos image 5" class="w-full h-full object-cover"/>
+    </div>
+  </div>
+</section>
+
+<!-- 
+<div class="md:col-span-7 overflow-hidden rounded-sm">
     <Image
       src={Turk_1}
       alt=""
@@ -25,4 +47,4 @@ import Turk_5 from "../images/Turk_5.webp";
 
     <Image src={Turk_5} alt="" class="w-full h-full object-cover rounded-sm" />
   </div>
-</section>
+   -->
