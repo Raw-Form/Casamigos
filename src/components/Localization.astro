@@ -3,11 +3,51 @@ import Map from "../images/Localization.svg";
 import Point from "../images/Map.svg";
 ---
 
-<section
-  id="Localization"
-  class="h-full lg:h-[75vh] w-full flex flex-col items-center p-10 bg-primary text-white"
->
+<section id="Localization" class="flex flex-col items-center p-10 h-fit w-[100dvw]lg:h-[75dvh]">
   <h2 class="text-secondary">Localization</h2>
+  <div class="flex flex-col-reverse lg:flex-row gap-2 items-center ">
+    <div class="flex flex-col items-center justify-center lg:w-1/2 gap-3 text-white">
+      <p>
+        <span class="text-secondary font-bold italic">Providenciales</span> — often
+        referred to as <span class="text-secondary font-bold italic"
+          >“Provo”</span
+        > — is world-renowned for its award-winning beaches, including Grace Bay Beach,
+        celebrated for its powder-soft white sand and crystal-clear turquoise waters.
+        <span class="text-secondary font-bold italic"
+          >The island is known for its sophisticated yet relaxed atmosphere,
+          blending luxury living with untouched natural beauty.</span
+        >
+      </p>
+      <p>
+        Boating enthusiasts will appreciate the island’s exceptional boating
+        culture, with calm turquoise waters, hidden cays, vibrant coral reefs,
+        and easy access to some of the Caribbean’s most breathtaking
+        destinations. From sunset cruises and fishing excursions to
+        island-hopping adventures, the surrounding waters are truly part of the
+        lifestyle.
+      </p>
+      <p>
+        Beyond Providenciales, the stunning sister islands of North Caicos,
+        Middle Caicos, and South Caicos offer endless opportunities to explore
+        secluded beaches, dramatic coastlines, authentic island culture, and
+        unforgettable natural scenery. <br />
+        This home is more than a residence — <span
+          class="text-secondary font-bold italic"
+          >it is a private island sanctuary designed for those seeking luxury,
+          tranquility, and the unmatched beauty of Turks and Caicos living.</span
+        >
+      </p>
+    </div>
+    <a class="group relative w-full h-[50dvh] lg:w-1/2 lg:h-full overflow-hidden " href="https://maps.app.goo.gl/1ZSGmQHLDs54siTz8">
+      <Map class="w-full h-full text-secondary stroke-secondary stroke-2 hover:scale-105 transition-all duration-300"/>
+      <Point class="absolute top-[58%] left-[50%] md:top-[70%] md:left-[52%] lg:top-[68%] xl:top-[70%] h-4 w-4 xl:h-6 xl:w-6 text-accent"/>
+      <p class="absolute bottom-0 right-0 animate-pulse border-2 p-1 rounded-sm text-secondary">Click to view on google maps</p>
+    </a>
+  </div>
+</section>
+
+<!-- 
+<h2 class="text-secondary">Localization</h2>
   <div
     class="flex flex-col lg:flex-row grow items-center justify-between gap-5"
   >
@@ -53,5 +93,4 @@ import Point from "../images/Map.svg";
         Click to view on google maps
       </p>
     </a>
-  </div>
-</section>
+  </div> -->

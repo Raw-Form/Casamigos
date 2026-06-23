@@ -95,24 +95,5 @@ import ContactButton from "../components/ContactButton.astro";
       },
       "<",
     );
-
-  const tlRender = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#Render",
-      start: "top 12%",
-      end: "+=1000", // controla cuánto dura el efecto
-      scrub: true,
-      pin: true,
-    },
-  });
-
-  tlRender.to("#Render", {
-    backgroundColor: "#85c79a", // tu primary
-    ease: "none",
-  });
-
-  // ─── Estado central ───────────────────────────────────────────────
-  let state = 0;
-
  
 </script>
