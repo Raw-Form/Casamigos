@@ -31,7 +31,7 @@ import ContactButton from "../components/ContactButton.astro";
 
 <style>
   .section {
-    height: 100dvh;
+    height: 100svh;
   }
 
   #mask-overlay {
@@ -39,7 +39,11 @@ import ContactButton from "../components/ContactButton.astro";
     mask-image: url("../images/Logo.svg");
     mask-repeat: no-repeat;
     mask-position: center;
-    mask-size: 50dvh;
+    mask-size: 50svh;
+    -webkit-mask-image: url("../images/Logo.svg");
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: 50svh;
   }
 
   #logo-overlay {
@@ -48,6 +52,10 @@ import ContactButton from "../components/ContactButton.astro";
     mask-repeat: no-repeat;
     mask-position: center;
     mask-size: contain;
+    -webkit-mask-image: url("../images/Logo.svg");
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
   }
 </style>
 
@@ -69,7 +77,7 @@ import ContactButton from "../components/ContactButton.astro";
   });
 
   tl.to("#mask-overlay", {
-    maskSize: "8000dvh",
+    maskSize: "8000svh",
     maskPosition: "center 90% ",
   })
     .to(
