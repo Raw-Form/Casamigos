@@ -11,14 +11,54 @@ import FacadeImg from "../images/Facade.webp";
 import BackyardImg from "../images/Backyard.webp";
 
 const photos = [
-  { id: "Lounge", label: "Lounge", image: LoungeImg },
-  { id: "Diningroom", label: "Dining room", image: DiningroomImg },
-  { id: "Hall", label: "Hall", image: HallImg },
-  { id: "Kitchen", label: "Kitchen", image: KitchenImg },
-  { id: "Bedroom", label: "Bedroom", image: BedroomImg },
-  { id: "Bathroom", label: "Bathroom", image: BathroomImg },
-  { id: "Facade", label: "Facade", image: FacadeImg },
-  { id: "Backyard", label: "Backyard", image: BackyardImg },
+  {
+    id: "Lounge",
+    label: "Lounge",
+    image: LoungeImg,
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+  },
+  {
+    id: "Diningroom",
+    label: "Dining room",
+    image: DiningroomImg,
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+  },
+  {
+    id: "Hall",
+    label: "Hall",
+    image: HallImg,
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+  },
+  {
+    id: "Kitchen",
+    label: "Kitchen",
+    image: KitchenImg,
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+  },
+  {
+    id: "Bedroom",
+    label: "Bedroom",
+    image: BedroomImg,
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+  },
+  {
+    id: "Bathroom",
+    label: "Bathroom",
+    image: BathroomImg,
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+  },
+  {
+    id: "Facade",
+    label: "Facade",
+    image: FacadeImg,
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+  },
+  {
+    id: "Backyard",
+    label: "Backyard",
+    image: BackyardImg,
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+  },
 ];
 ---
 
@@ -32,15 +72,22 @@ const photos = [
     >
       {
         photos.map((photo, i) => (
-          <Image
-            id={`Photo_${photo.id}`}
-            src={photo.image}
-            alt={photo.label}
-            class:list={[
-              "property-image absolute inset-0 object-cover w-full h-full",
-              i !== 0 ? "opacity-0" : "opacity-100",
-            ]}
-          />
+          <div class="w-full h-full flex items-end pb-4 px-4 ">
+            <Image
+              id={`Photo_${photo.id}`}
+              src={photo.image}
+              alt={photo.label}
+              class:list={[
+                "property-image absolute inset-0 object-cover w-full h-full",
+                i !== 0 ? "opacity-0" : "opacity-100",
+              ]}
+            />
+            <div class="z-20  px-1 py-2 lg:px-2 lg:py-4 bg-primary/20 backdrop-blur-xs rounded-2xl">
+              <p class="text-center text-white">
+                {photo.text}
+              </p>
+            </div>
+          </div>
         ))
       }
     </div>
