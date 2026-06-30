@@ -15,49 +15,49 @@ const photos = [
     id: "Lounge",
     label: "Lounge",
     image: LoungeImg,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+    text: "Features a cozy lounge area centered around a fluted wood accent wall and soft white furniture, framed by expansive sliding glass doors that open up to the outdoors.",
   },
   {
     id: "Diningroom",
     label: "Dining room",
     image: DiningroomImg,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+    text: "Provides a transition into the dining zone, highlighting a stunning marble-clad kitchen island paired with contemporary white barstools under soft, integrated ceiling lighting.",
   },
   {
     id: "Hall",
     label: "Hall",
     image: HallImg,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+    text: "Captures the spacious hall perspective, seamlessly connecting the kitchen to a dramatic floating staircase with open wood treads and sleek glass railings.",
   },
   {
     id: "Kitchen",
     label: "Kitchen",
     image: KitchenImg,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+    text: "Focuses deeply on the kitchen architecture, emphasizing the elegant marble backsplashes, light wood lower cabinetry, and a vertical wood-slat partition that brings structure and natural texture into the core of the home.",
   },
   {
     id: "Bedroom",
     label: "Bedroom",
     image: BedroomImg,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+    text: "The bedroom defined by a vertical wood-slat feature wall behind a plush upholstered headboard. Large sliding doors invite natural light and tropical balcony views into the room, creating an airy, peaceful sanctuary.",
   },
   {
     id: "Bathroom",
     label: "Bathroom",
     image: BathroomImg,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+    text: "The bathroom mirroring the home’s signature wood accents via a linear slatted wall panel and floating vanity. Earthy, textured stone wall finishes enclose a glass shower area centered around a frosted window that floods the space with diffused light.",
   },
   {
     id: "Facade",
     label: "Facade",
     image: FacadeImg,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+    text: "The front facade highlighting geometric cubist forms balanced by a warm, vertical wood-paneled section. Large windows and a recessed entryway offer a glimpse of the illuminated interior, framed beautifully by palm trees and manicured lawns.",
   },
   {
     id: "Backyard",
     label: "Backyard",
     image: BackyardImg,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat ultrices purus in aliquet. Morbi et lectus felis. Vestibulum eu lobortis velit. Aliquam posuere auctor aliquet.",
+    text: "The backyard showcasing two levels of open-air living. Wide sliding glass doors seamlessly bridge the indoor spaces with a covered terrace, an upper balcony, and a lush green lawn ideal for outdoor relaxation.",
   },
 ];
 ---
@@ -72,7 +72,7 @@ const photos = [
     >
       {
         photos.map((photo, i) => (
-          <div class="w-full h-full flex items-end pb-4 px-4 ">
+          <>
             <Image
               id={`Photo_${photo.id}`}
               src={photo.image}
@@ -82,12 +82,18 @@ const photos = [
                 i !== 0 ? "opacity-0" : "opacity-100",
               ]}
             />
-            <div class="z-20  px-1 py-2 lg:px-2 lg:py-4 bg-primary/20 backdrop-blur-xs rounded-2xl">
-              <p class="text-center text-white">
-                {photo.text}
-              </p>
+            <div
+              id={`Text_${photo.id}`}
+              class:list={[
+                "photo-text absolute inset-x-0 bottom-0 z-20 px-4 pb-4",
+                i !== 0 ? "opacity-0" : "opacity-100",
+              ]}
+            >
+              <div class="px-1 py-2 lg:px-2 lg:py-4 bg-primary/20 backdrop-blur-xs rounded-2xl">
+                <p class="text-center text-white">{photo.text}</p>
+              </div>
             </div>
-          </div>
+          </>
         ))
       }
     </div>
@@ -157,6 +163,7 @@ const photos = [
     "#Photos .photos-title",
   );
   const images = document.querySelectorAll<HTMLElement>(".property-image");
+  const texts = document.querySelectorAll<HTMLElement>(".photo-text");
   const indicatorDesk = document.getElementById(
     "Photos_Indicator",
   ) as HTMLElement;
@@ -232,11 +239,22 @@ const photos = [
         images[prevIndex],
         { opacity: 0, scale: 1.03, duration: 0.3, ease: "power1.in" },
         0,
-      ).to(
-        images[nextIndex],
-        { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" },
-        0.3,
-      );
+      )
+        .to(
+          images[nextIndex],
+          { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" },
+          0.3,
+        )
+        .to(
+          texts[prevIndex],
+          { opacity: 0, duration: 0.3, ease: "power1.in" },
+          0,
+        ) // sale con la imagen
+        .to(
+          texts[nextIndex],
+          { opacity: 1, duration: 0.4, ease: "power2.out" },
+          0.3,
+        ); // entra con la imagen
     }
 
     currentIndex = nextIndex;
