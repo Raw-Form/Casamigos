@@ -62,207 +62,274 @@ const photos = [
 ];
 ---
 
-<section id="Photos" class="h-[88dvh] w-full p-4 md:p-10 bg-primary">
+<section id="Photos" class="h-full lg:h-[88dvh] w-full bg-primary p-4">
+  <!-- display: mobile -->
   <div
-    class="relative w-full h-full rounded-[30px] flex flex-col lg:flex-row gap-3 lg:gap-5"
+    id="Photos_Mobile"
+    class="h-full w-full grid grid-rows-10 gap-2 lg:hidden"
   >
-    <!-- ① IMAGEN: arriba en móvil, derecha en desktop -->
     <div
-      class="relative w-full flex-1 min-h-0 overflow-hidden rounded-[20px] lg:rounded-[30px] order-1 lg:order-2"
+      class="relative row-span-6 overflow-hidden rounded-[10px]"
     >
       {
-        photos.map((photo, i) => (
-          <>
+        photos.map((ph, i) => (
+          <div
+            id={`PhotoWrap_m_${ph.id}`}
+            class:list={[
+              "property-image-m absolute inset-0",
+              i !== 0 ? "opacity-0" : "opacity-100",
+            ]}
+          >
+            {/* Fondo: misma imagen, recortada y desenfocada para rellenar el espacio */}
             <Image
-              id={`Photo_${photo.id}`}
-              src={photo.image}
-              alt={photo.label}
-              class:list={[
-                "property-image absolute inset-0 object-cover w-full h-full",
-                i !== 0 ? "opacity-0" : "opacity-100",
-              ]}
+              src={ph.image}
+              alt=""
+              aria-hidden="true"
+              class="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-60"
             />
-            <div
-              id={`Text_${photo.id}`}
-              class:list={[
-                "photo-text absolute inset-x-0 bottom-0 z-20 px-4 pb-4",
-                i !== 0 ? "opacity-0" : "opacity-100",
-              ]}
-            >
-              <div class="px-1 py-2 lg:px-2 lg:py-4 bg-primary/20 backdrop-blur-xs rounded-2xl">
-                <p class="text-center text-white">{photo.text}</p>
-              </div>
-            </div>
-          </>
+            {/* Imagen principal: completa, sin recortar */}
+            <Image
+              src={ph.image}
+              alt={ph.label}
+              class="relative w-full h-full object-scale-down"
+            />
+          </div>
         ))
       }
     </div>
-
-    <!-- ② TÍTULOS: scroll horizontal en móvil, columna vertical en desktop -->
+    <div class="relative row-span-3 grid px-2 bg-secondary/70 rounded-[10px]">
+      {
+        photos.map((ph, i) => (
+          <p
+            id={`Text_m_${ph.id}`}
+            class:list={[
+              "photo-text-m col-start-1 row-start-1 text-white text-center self-center",
+              i !== 0 ? "opacity-0" : "opacity-100",
+            ]}
+          >
+            {ph.text}
+          </p>
+        ))
+      }
+    </div>
     <div
-      class="relative shrink-0 order-2 lg:order-1
-        bg-secondary rounded-[20px] lg:rounded-[30px]
-        flex flex-row items-center gap-1
-        overflow-x-auto overflow-y-hidden
-        px-4 py-3
-        lg:flex-col lg:items-start lg:justify-around
-        lg:overflow-x-visible lg:overflow-y-visible
-        lg:px-5 lg:py-10
-        no-scrollbar"
+      class="relative grid grid-cols-[repeat(8,1fr)] row-span-1 gap-4 px-2 py-1 bg-secondary rounded-[10px] overflow-x-scroll"
     >
-      <!-- Indicador lateral: solo visible en desktop -->
+      {
+        photos.map((ph, i) => (
+          <button
+            type="button"
+            id={`Btn_m_${ph.id}`}
+            class="photo-btn-m text-primary"
+            data-index={i}
+          >
+            <h6>{ph.label}</h6>
+          </button>
+        ))
+      }
       <div
-        id="Photos_Indicator"
-        class="hidden lg:block absolute left-0 w-[3px] bg-primary rounded-full pointer-events-none opacity-0"
-        style="top:0; height:0px;"
-      >
-      </div>
-
-      <!-- Indicador inferior: solo visible en móvil/tablet -->
-      <div
-        id="Photos_Indicator_Mobile"
-        class="lg:hidden absolute bottom-0 h-[3px] bg-primary rounded-full pointer-events-none opacity-0"
+        id="Indicator_Mobile"
+        class="absolute bottom-0 bg-primary h-2 opacity-0"
         style="left:0; width:0px;"
       >
       </div>
+    </div>
+  </div>
 
+  <!-- display:desktop -->
+  <div
+    id="Photos_Desktop"
+    class="hidden h-full w-full lg:grid lg:grid-cols-10 lg:grid-rows-10 lg:gap-4"
+  >
+    <div class="relative lg:col-span-8 xl:col-span-9 lg:row-span-8 xl:row-span-9 overflow-hidden rounded-[20px]">
       {
-        photos.map((photo) => (
-          <h2
-            id={`Title_${photo.id}`}
-            class="
-            photos-title cursor-pointer select-none
-            text-primary/70 whitespace-nowrap
-            text-sm md:text-base
-            px-2 py-1
-            lg:text-2xl lg:whitespace-normal lg:px-0 lg:py-0
-          "
-          >
-            {photo.label}
-          </h2>
+        photos.map((ph, i) => (
+          <Image
+            id={`Photo_d_${ph.id}`}
+            src={ph.image}
+            alt={ph.label}
+            class:list={[
+              "property-image-d absolute inset-0 object-cover w-full h-full",
+              i !== 0 ? "opacity-0" : "opacity-100",
+            ]}
+          />
         ))
       }
+    </div>
+    <div
+      class="px-2 py-1 relative lg:col-span-8 xl:col-span-9 lg:row-span-2 xl:row-span-1 grid rounded-[20px] bg-secondary/70"
+    >
+      {
+        photos.map((ph, i) => (
+          <p
+            id={`Text_d_${ph.id}`}
+            class:list={[
+              "photo-text-d col-start-1 row-start-1 text-white text-center text-balance self-center",
+              i !== 0 ? "opacity-0" : "opacity-100",
+            ]}
+          >
+            {ph.text}
+          </p>
+        ))
+      }
+    </div>
+    <div
+      class="relative grid lg:col-span-2 xl:col-span-1 row-span-full bg-secondary rounded-[20px]"
+    >
+      {
+        photos.map((ph, i) => (
+          <button
+            type="button"
+            id={`Btn_d_${ph.id}`}
+            class="photo-btn-d text-primary"
+            data-index={i}
+          >
+            <h3>{ph.label}</h3>
+          </button>
+        ))
+      }
+      <div
+        id="Indicator_Desktop"
+        class="absolute left-0 w-1 bg-primary opacity-0"
+        style="top:0; height:0px;"
+      >
+      </div>
     </div>
   </div>
 </section>
 
-<style>
-  /* Ocultar scrollbar manteniendo la funcionalidad */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-</style>
 <script>
   import gsap from "gsap";
 
-  const titles = document.querySelectorAll<HTMLElement>(
-    "#Photos .photos-title",
-  );
-  const images = document.querySelectorAll<HTMLElement>(".property-image");
-  const texts = document.querySelectorAll<HTMLElement>(".photo-text");
-  const indicatorDesk = document.getElementById(
-    "Photos_Indicator",
-  ) as HTMLElement;
-  const indicatorMobile = document.getElementById(
-    "Photos_Indicator_Mobile",
-  ) as HTMLElement;
+  type Refs = {
+    images: NodeListOf<HTMLElement>;
+    texts: NodeListOf<HTMLElement>;
+    buttons: NodeListOf<HTMLElement>;
+    indicator: HTMLElement;
+    axis: "x" | "y"; // x = horizontal (mobile), y = vertical (desktop)
+  };
 
-  let currentIndex = 0;
+  function setupGallery(refs: Refs) {
+    const { images, texts, buttons, indicator, axis } = refs;
+    let currentIndex = 0;
 
-  const isDesktop = () => window.innerWidth >= 1024;
+    gsap.set(buttons, { opacity: 0.6, fontWeight: 400 });
 
-  gsap.set(titles, { opacity: 0.2, fontWeight: 400 });
-
-  function activateTitle(nextIndex: number, skipImageFade = false) {
-    const prevIndex = currentIndex;
-    const activeEl = titles[nextIndex];
-    const tl = gsap.timeline();
-
-    titles.forEach((title, i) => {
-      const isActive = i === nextIndex;
-      tl.to(
-        title,
-        {
-          opacity: isActive ? 1 : 0.9,
-          fontWeight: isActive ? 700 : 400,
-          x: isDesktop() ? (isActive ? 10 : 0) : 0,
-          scale: isDesktop() ? 1 : isActive ? 1.05 : 1,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        0,
-      );
-    });
-
-    if (isDesktop()) {
-      const rect = activeEl.getBoundingClientRect();
-      const parentRect = indicatorDesk.parentElement!.getBoundingClientRect();
-      tl.to(
-        indicatorDesk,
-        {
-          top: rect.top - parentRect.top,
-          height: rect.height,
-          opacity: 1,
-          duration: 0.45,
-          ease: "power3.inOut",
-        },
-        0,
-      );
-    }
-
-    if (!isDesktop()) {
-      tl.to(
-        indicatorMobile,
-        {
+    function moveIndicator(activeEl: HTMLElement) {
+      if (axis === "x") {
+        gsap.to(indicator, {
           left: activeEl.offsetLeft,
           width: activeEl.offsetWidth,
           opacity: 1,
           duration: 0.4,
           ease: "power3.inOut",
-        },
-        0,
-      );
+        });
 
-      activeEl.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center",
+        // Desplaza el carrusel de botones para que la opción activa quede visible
+        activeEl.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center",
+        });
+      } else {
+        gsap.to(indicator, {
+          top: activeEl.offsetTop,
+          height: activeEl.offsetHeight,
+          opacity: 1,
+          duration: 0.4,
+          ease: "power3.inOut",
+        });
+      }
+    }
+
+    function activate(nextIndex: number, skipFade = false) {
+      if (nextIndex === currentIndex && !skipFade) return;
+
+      const prevIndex = currentIndex;
+      const activeBtn = buttons[nextIndex];
+
+      // Tag/label activo
+      buttons.forEach((btn, i) => {
+        gsap.to(btn, {
+          opacity: i === nextIndex ? 1 : 0.6,
+          fontWeight: i === nextIndex ? 700 : 400,
+          duration: 0.3,
+          ease: "power2.out",
+        });
       });
+
+      // Indicador se mueve hacia la opción elegida
+      moveIndicator(activeBtn);
+
+      if (!skipFade) {
+        const tl = gsap.timeline();
+        // Foto: fade out -> fade in
+        tl.to(images[prevIndex], {
+          opacity: 0,
+          duration: 0.3,
+          ease: "power1.in",
+        })
+          .to(
+            images[nextIndex],
+            { opacity: 1, duration: 0.4, ease: "power2.out" },
+            ">",
+          )
+          // Texto: fade out -> fade in (en paralelo con la foto)
+          .to(
+            texts[prevIndex],
+            { opacity: 0, duration: 0.3, ease: "power1.in" },
+            0,
+          )
+          .to(
+            texts[nextIndex],
+            { opacity: 1, duration: 0.4, ease: "power2.out" },
+            0.3,
+          );
+      }
+
+      currentIndex = nextIndex;
     }
 
-    if (!skipImageFade) {
-      tl.to(
-        images[prevIndex],
-        { opacity: 0, scale: 1.03, duration: 0.3, ease: "power1.in" },
-        0,
-      )
-        .to(
-          images[nextIndex],
-          { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" },
-          0.3,
-        )
-        .to(
-          texts[prevIndex],
-          { opacity: 0, duration: 0.3, ease: "power1.in" },
-          0,
-        ) // sale con la imagen
-        .to(
-          texts[nextIndex],
-          { opacity: 1, duration: 0.4, ease: "power2.out" },
-          0.3,
-        ); // entra con la imagen
-    }
+    buttons.forEach((btn, i) => {
+      btn.addEventListener("click", () => activate(i));
+    });
 
-    currentIndex = nextIndex;
+    // Estado inicial: solo posiciona el indicador, sin animar fotos/textos
+    requestAnimationFrame(() => activate(0, true));
+
+    // Reajustar el indicador si cambia el tamaño (p.ej. rotación del móvil)
+    window.addEventListener("resize", () => {
+      moveIndicator(buttons[currentIndex]);
+    });
   }
 
-  titles.forEach((title, i) => {
-    title.addEventListener("click", () => activateTitle(i));
+  // Mobile
+  setupGallery({
+    images: document.querySelectorAll<HTMLElement>(
+      "#Photos_Mobile .property-image-m",
+    ),
+    texts: document.querySelectorAll<HTMLElement>(
+      "#Photos_Mobile .photo-text-m",
+    ),
+    buttons: document.querySelectorAll<HTMLElement>(
+      "#Photos_Mobile .photo-btn-m",
+    ),
+    indicator: document.getElementById("Indicator_Mobile") as HTMLElement,
+    axis: "x",
   });
 
-  activateTitle(0, true);
+  // Desktop
+  setupGallery({
+    images: document.querySelectorAll<HTMLElement>(
+      "#Photos_Desktop .property-image-d",
+    ),
+    texts: document.querySelectorAll<HTMLElement>(
+      "#Photos_Desktop .photo-text-d",
+    ),
+    buttons: document.querySelectorAll<HTMLElement>(
+      "#Photos_Desktop .photo-btn-d",
+    ),
+    indicator: document.getElementById("Indicator_Desktop") as HTMLElement,
+    axis: "y",
+  });
 </script>
