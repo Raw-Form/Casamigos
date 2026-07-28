@@ -68,9 +68,7 @@ const photos = [
     id="Photos_Mobile"
     class="h-full w-full grid grid-rows-10 gap-2 lg:hidden"
   >
-    <div
-      class="relative row-span-6 overflow-hidden rounded-[10px]"
-    >
+    <div class="relative row-span-6 overflow-hidden rounded-[10px]">
       {
         photos.map((ph, i) => (
           <div
@@ -141,7 +139,9 @@ const photos = [
     id="Photos_Desktop"
     class="hidden h-full w-full lg:grid lg:grid-cols-10 lg:grid-rows-10 lg:gap-4"
   >
-    <div class="relative lg:col-span-8 xl:col-span-9 lg:row-span-8 xl:row-span-9 overflow-hidden rounded-[20px]">
+    <div
+      class="relative lg:col-span-8 xl:col-span-9 lg:row-span-8 xl:row-span-9 overflow-hidden rounded-[20px]"
+    >
       {
         photos.map((ph, i) => (
           <Image
@@ -225,11 +225,23 @@ const photos = [
           ease: "power3.inOut",
         });
 
-        // Desplaza el carrusel de botones para que la opción activa quede visible
-        activeEl.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "center",
+        // Desplaza el carrusel de botones, animando solo scrollLeft del contenedor
+        // (evita el bug de scrollIntoView que a veces mueve el scroll de la página en mobile)
+        const container = activeEl.parentElement as HTMLElement;
+        const targetScroll = Math.max(
+          0,
+          Math.min(
+            activeEl.offsetLeft -
+              container.clientWidth / 2 +
+              activeEl.offsetWidth / 2,
+            container.scrollWidth - container.clientWidth,
+          ),
+        );
+
+        gsap.to(container, {
+          scrollLeft: targetScroll,
+          duration: 0.4,
+          ease: "power3.inOut",
         });
       } else {
         gsap.to(indicator, {

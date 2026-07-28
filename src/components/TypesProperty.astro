@@ -4,15 +4,15 @@ import Print_2 from "../images/Floor_2.webp";
 import Bedrooms from "../images/Bedrooms.svg";
 import Bathrooms from "../images/Bathrooms.svg";
 import Pool from "../images/pool.svg";
-
+import { Image } from "astro:assets";
 const Prints = [
   {
-    src: Print_1.src,
-    alt: "property type 1",
+    src: Print_1,
+    alt: "First Floor plan of Casamigos",
   },
   {
-    src: Print_2.src,
-    alt: "property type 1",
+    src: Print_2,
+    alt: "Upper Floor plan of Casamigos",
   },
 ];
 ---
@@ -37,27 +37,47 @@ const Prints = [
     }
   </ul>
   <div class="flex flex-col grow w-full min-h-0">
-    <div
-      class="w-full h-full relative bg-primary"
-    >
-      <picture>
-        <img
-          id="PrintImg"
-          src={Prints[0].src}
-          alt={Prints[0].alt}
-          class="object-contain w-full h-full"
-        />
-      </picture>
+    <div class="w-full h-full relative bg-primary">
+      <Image
+        id="PrintImg"
+        src={Prints[0].src}
+        alt={Prints[0].alt}
+        class="object-contain w-full h-full"
+      />
     </div>
   </div>
   <div class="w-full flex flex-col justify-center items-center">
-    <p class="text-center"> <span class="text-secondary font-bold italic ">Casamigos</span> offers flexibility for those looking to buy a vacation villa or personal residence. You can purchase the main villa, or add a 1, 2 or 3 bedroom guest villa (depending on lot size).</p>
-    <div class=" flex justify-center gap-4 text-center w-full lg:w-1/2 h-full">
-      <h3><span class="text-bold text-secondary">Total area:</span> 0.33 acres   </h3>
+    <p class="text-center">
+      <span class="text-secondary font-bold italic">Casamigos</span> offers flexibility
+      for those looking to buy a vacation villa or personal residence. You can purchase
+      the main villa, or add a 1, 2 or 3 bedroom guest villa (depending on lot size).
+    </p>
+    <div class="lg:flex lg:justify-center gap-4 text-center w-full lg:w-1/2 h-full">
+      <h3>
+        <span class="text-bold text-secondary">Total area:</span> 0.33 acres
+      </h3>
       <div class="flex gap-5 justify-center">
-        <div class="flex items-center gap-2"><Bedrooms class="h-6 aspect-square text-secondary"/><p class="text-2xl font-semibold">3</p></div>
-        <div class="flex items-center gap-2"><Bathrooms class="h-6 aspect-square text-secondary"/><p class="text-2xl font-semibold">3.5</p></div>
-        <div class="flex items-center gap-2"><Pool class="h-6 aspect-square text-secondary"/><p class="text-2xl font-semibold">1</p></div>
+        <div class="flex items-center gap-2">
+          <Bedrooms class="h-6 aspect-square text-secondary" /><p
+            class="text-2xl font-semibold"
+          >
+            3
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <Bathrooms class="h-6 aspect-square text-secondary" /><p
+            class="text-2xl font-semibold"
+          >
+            3.5
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <Pool class="h-6 aspect-square text-secondary" /><p
+            class="text-2xl font-semibold"
+          >
+            1
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -69,7 +89,7 @@ const Prints = [
 
   buttons.forEach((btn, index) => {
     btn.addEventListener("click", () => {
-      img.src = Prints[index].src;
+      img.src = Prints[index].src.src;
       img.alt = Prints[index].alt;
 
       buttons.forEach((b) => b.classList.remove("bg-accent"));
