@@ -7,24 +7,49 @@ import Turk_9 from "../images/Turk_9.webp";
 import Turk_10 from "../images/Turk_10.webp";
 ---
 
-<section class="grid grid-cols-6 grid-rows-4 gap-5 h-svh p-10 bg-primary ">
-  <div class="col-span-4 row-span-2 overflow-hidden rounded-sm">
-    <Image src={Turk_6} alt="" class="w-full h-full object-cover" />
-  </div>
+<section class="w-full h-dvh p-10 bg-primary ">
+  <!-- display desktop -->
+  <div class="hidden lg:grid lg:grid-cols-4 lg:grid-rows-4 gap-5 w-full h-full">
+    <div class="col-span-2 row-span-2 overflow-hidden rounded-sm">
+      <Image src={Turk_6} alt="" class="w-full h-full object-cover" />
+    </div>
 
-  <div class="col-span-2 row-span-2 overflow-hidden rounded-sm">
-    <Image src={Turk_7} alt="" class="w-full h-full object-cover" />
-  </div>
+    <div class="col-span-2 row-span-2 overflow-hidden rounded-sm">
+      <Image src={Turk_7} alt="" class="w-full h-full object-cover" />
+    </div>
 
-  <div class="col-span-2 row-span-1 overflow-hidden rounded-sm">
-    <Image src={Turk_8} alt="" class="w-full h-full object-cover" />
-  </div>
+    <div class="col-span-1 row-span-1 overflow-hidden rounded-sm">
+      <Image src={Turk_8} alt="" class="w-full h-full object-cover" />
+    </div>
 
-  <div class="col-span-4 row-span-1 overflow-hidden rounded-sm">
-    <Image src={Turk_9} alt="" class="w-full h-full object-cover" />
-  </div>
+    <div class="col-span-3 row-span-2 overflow-hidden rounded-sm">
+      <Image src={Turk_10} alt="" class="w-full h-full object-cover" />
+    </div>
 
-  <div class="col-span-6 row-span-1 overflow-hidden rounded-sm">
-    <Image src={Turk_10} alt="" class="w-full h-full object-cover" />
+    <div class="col-span-1 row-span-1 overflow-hidden rounded-sm">
+      <Image src={Turk_9} alt="" class="w-full h-full object-cover" />
+    </div>
+  </div>
+  <!-- display mobile -->
+  <div class="grid grid-rows-3 grid-cols-2 gap-5 w-full h-full lg:hidden">
+    <div class="col-span-1 row-span-1 overflow-hidden rounded-sm">
+      <Image src={Turk_6} alt="" class="w-full h-full object-cover" />
+    </div>
+
+    <div class="col-span-1 row-span-1 overflow-hidden rounded-sm">
+      <Image src={Turk_7} alt="" class="w-full h-full object-cover" />
+    </div>
+
+    <div class="col-span-2 row-span-1 overflow-hidden rounded-sm">
+      <Image src={Turk_8} alt="" class="w-full h-full object-cover" />
+    </div>
+
+    <div class="col-span-1 row-span-1 overflow-hidden rounded-sm">
+      <Image src={Turk_10} alt="" class="w-full h-full object-cover" />
+    </div>
+
+    <div class="col-span-1 row-span-1 overflow-hidden rounded-sm">
+      <Image src={Turk_9} alt="" class="w-full h-full object-cover" />
+    </div>
   </div>
 </section>
