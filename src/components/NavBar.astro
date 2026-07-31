@@ -1,17 +1,17 @@
 ---
-import MenuBars from '../images/Bars.svg';
-import Logo from '../images/Logo.svg';;
+import MenuBars from "../images/Bars.svg";
+import Logo from "../images/Logo.svg";
 ---
-<header
-  id="header"
-  class="fixed h-[12vh] w-screen bg-primary z-40 opacity-0"
->
+
+<header id="header" class="fixed h-[12vh] w-screen bg-primary z-40 opacity-0">
   <nav class="h-full w-full relative flex items-center justify-center p-4">
     <button id="menu-button" class="absolute left-10">
-      <MenuBars class="w-12 h-12 text-secondary active:text-accent transition-colors duration-300" />
+      <MenuBars
+        class="w-12 h-12 text-secondary active:text-accent transition-colors duration-300"
+      />
     </button>
     <div class="flex items-center gap-4 text-secondary">
-      <Logo class="w-14 h-14 text-secondary"/>
+      <Logo class="w-14 h-14 text-secondary" />
       <h1 class="hidden sm:block">Casamigos</h1>
     </div>
     <div
@@ -24,6 +24,17 @@ import Logo from '../images/Logo.svg';;
         ><h3>Home</h3></a
       >
       <a
+        href="#Photos"
+        class="w-full px-4 hover:bg-accent active:brightness-125 transition-all duration-300"
+        ><h3>Property's Photos</h3>
+      </a>
+      <a
+        href="#TypesProperty"
+        class="w-full px-4 hover:bg-accent active:brightness-125 transition-all duration-300"
+        ><h3>Floors' printings</h3>
+      </a>
+
+      <a
         href="#AboutUs"
         class="w-full px-4 hover:bg-accent active:brightness-125 transition-all duration-300"
         ><h3>About Us</h3>
@@ -33,16 +44,6 @@ import Logo from '../images/Logo.svg';;
         class="w-full px-4 hover:bg-accent active:brightness-125 transition-all duration-300"
         ><h3>Localization</h3></a
       >
-      <a
-        href="#TypesProperty"
-        class="w-full px-4 hover:bg-accent active:brightness-125 transition-all duration-300"
-        ><h3>Types of property</h3>
-      </a>
-      <a
-        href="#Photos"
-        class="w-full px-4 hover:bg-accent active:brightness-125 transition-all duration-300"
-        ><h3>More Photos</h3>
-      </a>
       <a
         href="#ContactUs"
         class="w-full px-4 hover:bg-accent active:brightness-125 transition-all duration-300"
